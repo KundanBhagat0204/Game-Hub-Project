@@ -15,14 +15,10 @@ function App() {
       </GridItem>
       {isLargeScreen && (
         <Show when={isLargeScreen}>
-          <GridItem area="aside" bg={"gray"}>
-            Aside
-          </GridItem>
+          <GridItem area="aside">Aside</GridItem>
         </Show>
       )}
-      <GridItem area="main" bg={"salmon"}>
-        Main
-      </GridItem>
+      <GridItem area="main">Main</GridItem>
     </Grid>
   );
 }
