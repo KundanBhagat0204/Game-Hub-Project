@@ -12,7 +12,7 @@ const CriticScore = ({ score }: Props) => {
       bg={color}
       color="white"
       fontSize={"14px"}
-      paddingX={2}
+      padding={1}
       borderRadius={"4px"}
     >
       {score}
