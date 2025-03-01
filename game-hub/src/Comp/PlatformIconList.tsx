@@ -32,14 +32,13 @@ const PlatformIconList = ({ platforms }: Props) => {
 
   return (
     <HStack margin={"10px"}>
-      {" "}
-      {platforms.map((platform) => (
-        <Icon
-          key={platform.id || platform.slug}
-          as={iconMap[platform.slug]}
-          color={"gray.500"}
-        />
-      ))}
+      {platforms.map((platform) => {
+        const IconComponent = iconMap[platform.slug];
+
+        return IconComponent ? (
+          <Icon key={platform.id} as={IconComponent} color={"gray.500"} />
+        ) : null; // If IconComponent is undefined, return null (avoiding errors)
+      })}
     </HStack>
   );
 };
