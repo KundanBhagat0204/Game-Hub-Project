@@ -2,6 +2,7 @@ import {
   Box,
   Grid,
   GridItem,
+  HStack,
   Show,
   useBreakpointValue,
   VStack,
@@ -13,6 +14,7 @@ import { useState } from "react";
 import { Genre } from "./Hooks/useGenres";
 import PlatformSelector from "./Comp/PlatformSelector";
 import { Platform } from "./Hooks/useGames";
+import SortSelector from "./Comp/SortSelector";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -47,14 +49,19 @@ function App() {
         </Show>
       )}
       <GridItem area="main">
-        <Box>
-          <PlatformSelector
-            selectedPlatform={gameQuery.platform}
-            onSelectPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
-            }
-          />
-        </Box>
+        <HStack gap={5} paddingLeft={"2.5"} marginBottom={5}>
+          <Box>
+            <PlatformSelector
+              selectedPlatform={gameQuery.platform}
+              onSelectPlatform={(platform) =>
+                setGameQuery({ ...gameQuery, platform })
+              }
+            />
+          </Box>
+          <Box>
+            <SortSelector></SortSelector>
+          </Box>
+        </HStack>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
