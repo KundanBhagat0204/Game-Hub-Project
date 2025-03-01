@@ -1,9 +1,17 @@
-import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  GridItem,
+  Show,
+  useBreakpointValue,
+  VStack,
+} from "@chakra-ui/react";
 import NavBar from "./Comp/NavBar";
 import GameGrid from "./Comp/GameGrid";
 import GenreList from "./Comp/GenreList";
 import { useState } from "react";
 import { Genre } from "./Hooks/useGenres";
+import PlatformSelector from "./Comp/PlatformSelector";
 function App() {
   const isLargeScreen = useBreakpointValue({ base: false, lg: true });
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
@@ -32,6 +40,9 @@ function App() {
         </Show>
       )}
       <GridItem area="main">
+        <Box>
+          <PlatformSelector />
+        </Box>
         <GameGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
