@@ -15,6 +15,7 @@ import { Genre } from "./Hooks/useGenres";
 import PlatformSelector from "./Comp/PlatformSelector";
 import { Platform } from "./Hooks/useGames";
 import SortSelector from "./Comp/SortSelector";
+import GameHeading from "./Comp/GameHeading";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -53,24 +54,27 @@ function App() {
         </Show>
       )}
       <GridItem area="main">
-        <Flex gap={5} paddingLeft={"2.5"} marginBottom={5}>
-          <Box>
-            <PlatformSelector
-              selectedPlatform={gameQuery.platform}
-              onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platform })
-              }
-            />
-          </Box>
-          <Box>
-            <SortSelector
-              sortOrder={gameQuery.sortOrder}
-              onSelectOrder={(sortOrder) =>
-                setGameQuery({ ...gameQuery, sortOrder })
-              }
-            ></SortSelector>
-          </Box>
-        </Flex>
+        <GameHeading gameQuery={gameQuery} />
+        <Box paddingLeft={"2"}>
+          <Flex gap={5} paddingLeft={"2.5"} marginBottom={5}>
+            <Box>
+              <PlatformSelector
+                selectedPlatform={gameQuery.platform}
+                onSelectPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, platform })
+                }
+              />
+            </Box>
+            <Box>
+              <SortSelector
+                sortOrder={gameQuery.sortOrder}
+                onSelectOrder={(sortOrder) =>
+                  setGameQuery({ ...gameQuery, sortOrder })
+                }
+              ></SortSelector>
+            </Box>
+          </Flex>
+        </Box>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
