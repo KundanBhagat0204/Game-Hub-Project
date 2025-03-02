@@ -2,6 +2,7 @@ import useData from "@/Hooks/useData";
 import useGenres, { Genre } from "../Hooks/useGenres";
 import {
   Button,
+  Heading,
   HStack,
   List,
   ListItem,
@@ -22,32 +23,39 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   if (isLoading) return <Spinner />;
   if (error) return <p>Error: {error}</p>;
   return (
-    <List.Root>
-      {data?.map((genre) => (
-        <ListItem key={genre.id} paddingY={"5px"}>
-          <>
-            <HStack gap={2} width={"100%"}>
-              <Image
-                boxSize={"32px"}
-                borderRadius={8}
-                src={getCroppedImageUrl(genre.image_background)}
-              ></Image>
-              <Button
-                onClick={() => onSelectGenre(genre)}
-                fontSize={"md"}
-                variant={"ghost"}
-                flex={"1"}
-                whiteSpace={"normal"}
-                wordBreak={"break-word"}
-                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
-              >
-                {genre.name}
-              </Button>
-            </HStack>
-          </>
-        </ListItem>
-      ))}
-    </List.Root>
+    <>
+      <Heading as={"h1"} fontSize={"2xl"} marginBottom={3}>
+        Genres
+      </Heading>
+      <List.Root listStyleType={"none"}>
+        {data?.map((genre) => (
+          <ListItem key={genre.id} paddingY={"5px"}>
+            <>
+              <HStack gap={2} width={"100%"}>
+                <Image
+                  boxSize={"32px"}
+                  objectFit={"cover"}
+                  borderRadius={8}
+                  src={getCroppedImageUrl(genre.image_background)}
+                ></Image>
+                <Button
+                  onClick={() => onSelectGenre(genre)}
+                  fontSize={"md"}
+                  variant={"ghost"}
+                  flex={"1"}
+                  whiteSpace={"normal"}
+                  fontWeight={
+                    genre.id === selectedGenre?.id ? "bold" : "normal"
+                  }
+                >
+                  {genre.name}
+                </Button>
+              </HStack>
+            </>
+          </ListItem>
+        ))}
+      </List.Root>
+    </>
   );
 };
 
