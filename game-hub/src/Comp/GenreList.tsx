@@ -1,4 +1,4 @@
-import useData from "@/Hooks/useData";
+import genres from "@/Data/genres";
 import useGenres, { Genre } from "../Hooks/useGenres";
 import {
   Button,
