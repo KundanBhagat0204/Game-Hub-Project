@@ -29,23 +29,22 @@ const SortSelector = ({ onSelectOrder, sortOrder }: Props) => {
   const { data, error, isLoading } = usePlatform();
   return (
     <MenuRoot>
-      <div>
-        <MenuTrigger>
-          <Button variant="outline" size="sm">
-            Order by : {currentSortOrder?.label || "Relevance"}
-          </Button>
-        </MenuTrigger>
-      </div>
+      <MenuTrigger>
+        <Button as={"div"} variant="outline" size="sm">
+          Order by : {currentSortOrder?.label || "Relevance"}
+        </Button>
+      </MenuTrigger>
       <MenuContent {...({ width: "200px" } as any)}>
         {isLoading}
         {error && <Text color={"red.500"}>Failed to load Platforms</Text>}
-        {sortOrders.map((order) => (
+        {sortOrders?.map((order) => (
           <MenuItem
-            key={order.value}
-            onClick={() => onSelectOrder(order.value)}
             {...({} as any)}
+            key={order.value}
+            value={order.value.toString()}
+            onClick={() => onSelectOrder(order.value)}
           >
-            <Box>{order.label}</Box>
+            {order.label}
           </MenuItem>
         ))}
       </MenuContent>

@@ -20,7 +20,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   return (
     <MenuRoot>
       <MenuTrigger>
-        <Button variant="outline" size="sm">
+        <Button as={"div"} variant="outline" size="sm">
           {selectedPlatform?.name ? selectedPlatform.name : "Platforms"}
         </Button>
       </MenuTrigger>
