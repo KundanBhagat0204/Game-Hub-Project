@@ -19,16 +19,17 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
 
   return (
     <MenuRoot>
-      <MenuTrigger asChild>
+      <MenuTrigger>
         <Button variant="outline" size="sm">
           {selectedPlatform?.name ? selectedPlatform.name : "Platforms"}
         </Button>
       </MenuTrigger>
-      <MenuContent width={"200px"}>
+      <MenuContent {...({ width: "200px" } as any)}>
         {isLoading}
         {error && <Text color={"red.500"}>Failed to load Platforms</Text>}
         {data?.map((platform) => (
           <MenuItem
+            {...({} as any)}
             onClick={() => onSelectPlatform(platform)}
             key={platform.id}
             value={platform.id.toString()}

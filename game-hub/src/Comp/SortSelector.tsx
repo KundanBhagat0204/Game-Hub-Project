@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react/button";
+import { Box, Button } from "@chakra-ui/react";
 import {
   MenuContent,
   MenuItem,
@@ -11,6 +11,7 @@ import usePlatform from "@/Hooks/usePlatform";
 interface Props {
   onSelectOrder: (sortOrder: string) => void;
   sortOrder: string;
+  width?: string;
 }
 
 const SortSelector = ({ onSelectOrder, sortOrder }: Props) => {
@@ -28,21 +29,23 @@ const SortSelector = ({ onSelectOrder, sortOrder }: Props) => {
   const { data, error, isLoading } = usePlatform();
   return (
     <MenuRoot>
-      <MenuTrigger asChild>
-        <Button variant="outline" size="sm">
-          Order by : {currentSortOrder?.label || "Relevance"}
-        </Button>
-      </MenuTrigger>
-      <MenuContent width={"200px"}>
+      <div>
+        <MenuTrigger>
+          <Button variant="outline" size="sm">
+            Order by : {currentSortOrder?.label || "Relevance"}
+          </Button>
+        </MenuTrigger>
+      </div>
+      <MenuContent {...({ width: "200px" } as any)}>
         {isLoading}
         {error && <Text color={"red.500"}>Failed to load Platforms</Text>}
         {sortOrders.map((order) => (
           <MenuItem
-            onClick={() => onSelectOrder(order.value)}
             key={order.value}
-            value={order.value}
+            onClick={() => onSelectOrder(order.value)}
+            {...({} as any)}
           >
-            {order.label}
+            <Box>{order.label}</Box>
           </MenuItem>
         ))}
       </MenuContent>

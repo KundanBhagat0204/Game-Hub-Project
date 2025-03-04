@@ -1,5 +1,5 @@
 import { InputGroup } from "@/components/ui/input-group";
-import { Input } from "@chakra-ui/react/input";
+import { Input } from "@chakra-ui/react";
 import { useRef } from "react";
 
 interface Props {
@@ -10,6 +10,8 @@ const SearchInput = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
   return (
     <form
+      id="form"
+      name="form"
       onSubmit={(event) => {
         event.preventDefault();
         if (ref.current) onSearch(ref.current.value);
