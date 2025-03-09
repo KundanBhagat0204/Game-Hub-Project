@@ -57,6 +57,16 @@ function App() {
         <GameHeading gameQuery={gameQuery} />
         <Box paddingLeft={"2"}>
           <Flex gap={5} paddingLeft={"2.5"} marginBottom={5}>
+            {!isLargeScreen && (
+              <Box mb={5}>
+                <GenreList
+                  selectedGenre={gameQuery.genre}
+                  onSelectGenre={(genre) =>
+                    setGameQuery({ ...gameQuery, genre })
+                  }
+                />
+              </Box>
+            )}
             <Box>
               <PlatformSelector
                 selectedPlatform={gameQuery.platform}

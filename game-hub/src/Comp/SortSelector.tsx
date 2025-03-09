@@ -26,7 +26,7 @@ const SortSelector = ({ onSelectOrder, sortOrder }: Props) => {
   const currentSortOrder = sortOrders.find(
     (order) => order.value === sortOrder
   );
-  const { data, error, isLoading } = usePlatform();
+  const { error, isLoading } = usePlatform();
   return (
     <MenuRoot>
       <MenuTrigger>
